@@ -1,0 +1,16 @@
+Database Scheme
+
+dbname: satbank
+collection: questions
+
+item:
+{
+    testname: //string, name of test
+    tags: [] //array of all tags (strings)
+    picture : {
+        data: //raw picture data (BinData)
+        format: //string, picture format
+        length: //length of data
+        md5: //md5 hash
+    }
+}
