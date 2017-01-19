@@ -1,0 +1,5 @@
+fs = require("fs");
+
+var docStart = "\\documentclass{article}\n\n\\usepackage{tgadventor}\n\\usepackage{changepage}\n\\usepackage{geometry}\n\\usepackage[utf8]{inputenc}\n\\usepackage{float} \n\\usepackage{pgfplots}\n\\usepackage{setspace}\n\\usepackage{vwcol} \n\\usepackage{tikz} \n\n\\newcommand{\\addimage}[1]{\n\t\\begin{figure}[h]\n\t\t\\includegraphics[width=\\linewidth]{#1} \n\t\\end{figure}\n\t\\newpage\n}\n\n\\begin{document}\n"
+
+fs.writeFileSync("header.txt", docStart);
