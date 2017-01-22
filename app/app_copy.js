@@ -1,9 +1,10 @@
-//app.js
 //Main process
 
 //Requirements
 var express = require('express');
 var mongo = require('mongodb').MongoClient;
+var util = require('util');
+var formidable = require("formidable");
 var tags = require('./data/tags.json');
 
 
@@ -35,6 +36,10 @@ app.use(require('./routes/index'));
 
 app.get('/', function(req, res) {
     res.send("bye world!");
+});
+
+app.post('/', function(req, res) {
+  processAllFieldsOfTheForm(req, res);
 });
 
 app.use('/', router);

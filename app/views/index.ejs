@@ -6,16 +6,15 @@
   <link rel="stylesheet" href="stylesheet.css">
   </head>
   <body>
-    <form>
       <p>Input topics</p>
       <% tagsList.forEach(function(item) { %>
-        <input type="checkbox" name=topic id=<%= item.name %> /><%= item.name %><br />
+        <input type="checkbox" class="input" name=topic id=<%= item.name %> /><%= item.name %><br />
           <%item.subTags.forEach(function(sub) { %>
-             &emsp; <input type="checkbox" name="subtopic" value=<%= sub %>><%= sub %><br />
+            &emsp; <input type="checkbox" class="input" name="topic" id=<%= sub %> value=<%= sub %>><%= sub %><br />
           <% }); %>
         <% }); %>
-        <p><input type="submit" value="Submit"></p>
-    </form>
+        <p><input id="submitbutton" type="button" value="Submit"></p>
+        <ul id="questions"></ul>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </body>
 </html>
