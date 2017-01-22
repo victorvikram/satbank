@@ -51,3 +51,6 @@ jspm_packages
 
 # Don't sync all node modules
 /node_modules
+
+# Don't sync uploads
+app/uploads
