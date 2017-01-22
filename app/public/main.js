@@ -1,13 +1,14 @@
 $(function() {
 
   var checkboxes = document.getElementsByClassName("input");
-
-  $.ajax({
+  console.log("running javascript");
+  /*$.ajax({
     type: 'GET',
-    url: '/api/questions?searchTag=algebra',
+    url: 'http://localhost:6969/api/questions?searchTag=algebra',
     success: function(data) {
       console.log('success', data);
     }
   });
+  */
 
 });
