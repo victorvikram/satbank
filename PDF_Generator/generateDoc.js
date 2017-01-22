@@ -2,10 +2,12 @@ var fs = require('fs');
 var readline = require('readline');
 var exec = require('child_process').exec;
 var path = require('path');
+var helper = require('./helper')
 
 // latex header and footer
 // var docStart = "\\documentclass{article}\n\n\\usepackage{tgadventor}\n\\usepackage{changepage}\n\\usepackage{geometry}\n\\usepackage[utf8]{inputenc}\n\\usepackage{float} \n\\usepackage{pgfplots}\n\\usepackage{setspace}\n\\usepackage{vwcol} \n\\usepackage{tikz} \n\n\\newcommand{\\addimage}[1]{\n\t\\begin{figure}[h]\n\t\t\\includegraphics[width=\\linewidth]{#1} \n\t\\end{figure}\n\t\\newpage\n}\n\n\\begin{document}\n"
 var docEnd = "\\end{document}"
+var starterPath = __dirname + "/Questions";
 
 // writes the header to the file
 var docStart = fs.readFileSync("header.txt", "UTF-8");
@@ -38,7 +40,7 @@ rl.on('close', function() {
 
    // inserts image commands into latex file based on the user's input
    for(s in subjects) {
-     chooseFile(subjects[s]);
+     questionPaths.push(helper.chooseFile(subjects[s], starterPath));
    }
 
    for(img in questionPaths) {
@@ -54,11 +56,3 @@ rl.on('close', function() {
 
     exec("pdflatex test.tex");
 });
-
-function chooseFile(subjectName) {
-  var pathName = path.join(__dirname, "Questions", subjectName);
-  var files = fs.readdirSync(pathName.toString());
-  var index = Math.floor(Math.random() * files.length);
-  var filePath = path.join(__dirname, "Questions", subjectName, files[index]);
-  questionPaths.push(filePath);
-}
