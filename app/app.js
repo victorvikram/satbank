@@ -32,13 +32,17 @@ mongo.connect(mongo_url, function(err, db) {
           tag: postData.body.tag,
           file: postData.file
       };
-      //console.log(Qs);
       questions.insert(Qs);
-      //console.log("Inserted");
     }
-    MongoAPI.findQuestions = function(searchTag, callback) {
+    MongoAPI.findQuestions = function(tags, callback) {
+        searchObj = [];
+
+        for(var key in tags) {
+            searchObj.push({tag: key});
+        }
+
         questions.find({
-            tag: searchTag
+            $or: searchObj
         }).project(        
         {
             _id: 1
@@ -107,11 +111,8 @@ router.route('/question')
 router.route('/questions')
 
     .get(function(req, res) {
-        var searchTag = req.query.searchTag;
-        console.log(req.query);
-        if(searchTag == null)
-            throw "Invalid search data"
-        MongoAPI.findQuestions(searchTag, function(documents) {
+        var tags = req.query;
+        MongoAPI.findQuestions(tags, function(documents) {
             res.send(SUCCESS(documents));
         });
     });
