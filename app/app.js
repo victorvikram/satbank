@@ -7,6 +7,8 @@ var mongo = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var multer  = require('multer');
 const assert = require('assert');
+var util = require('util');
+var tags = require('./data/tags.json');
 
 //Mongo setup
 var mongo_url = 'mongodb://localhost:27017/satbank';
@@ -62,6 +64,12 @@ var port = process.env.PORT || 6969;
 var router = express.Router();
 var upload = multer({ dest: __dirname + '/uploads/' });
 
+app.set('appData', tags);
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+app.use(require('./routes/index'));
+
 function SUCCESS(data) {
     return {
 	    status: "success",
@@ -100,10 +108,10 @@ router.route('/questions')
 
     .get(function(req, res) {
         var searchTag = req.query.searchTag;
+        console.log(req.query);
         if(searchTag == null)
             throw "Invalid search data"
         MongoAPI.findQuestions(searchTag, function(documents) {
-            console.log(documents);
             res.send(SUCCESS(documents));
         });
     });
