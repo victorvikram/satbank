@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= pageTitle %></title>
+  <link rel="stylesheet" href="stylesheet.css">
+  </head>
+  <body>
+    <form>
+      <p>Input topics</p>
+      <% tagsList.forEach(function(item) { %>
+        <input type="checkbox" name="topic" value=<%= item.name %>><%= item.name %><br />
+          <%item.subTags.forEach(function(sub) { %>
+             &emsp; <input type="checkbox" name="subtopic" value=<%= sub %>><%= sub %><br />
+          <% }); %>
+        <% }); %>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+  </body>
+</html>
