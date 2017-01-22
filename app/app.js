@@ -71,6 +71,7 @@ var upload = multer({ dest: __dirname + '/uploads/' });
 app.set('appData', tags);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+app.use(express.static('public'));
 
 app.use(require('./routes/index'));
 
