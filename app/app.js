@@ -60,7 +60,7 @@ mongo.connect(mongo_url, function(err, db) {
 var app = express();
 var port = process.env.PORT || 6969;
 var router = express.Router();
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: __dirname + '/uploads/' });
 
 function SUCCESS(data) {
     return {
@@ -114,7 +114,6 @@ router.route('/question/:qid')
         console.log(req.params.qid);
         MongoAPI.getQuestion(req.params.qid, function(question){
             var options = {
-                root: __dirname,
                 headers: {
                     'Content-Type': question.file.mimetype
                 }
