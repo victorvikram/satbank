@@ -29,7 +29,7 @@ var router = express.Router();
 
 app.set('appData', tags);
 app.set('view engine', 'ejs');
-app.set('views', 'app/views');
+app.set('views', __dirname + '/views');
 
 app.use(require('./routes/index'));
 
