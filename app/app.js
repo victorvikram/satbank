@@ -9,6 +9,9 @@ var multer  = require('multer');
 const assert = require('assert');
 var util = require('util');
 var tags = require('./data/tags.json');
+var crypto = require('crypto');
+var mime = require('mime');
+var generateDoc = require('./generateDoc');
 
 //Mongo setup
 var mongo_url = 'mongodb://localhost:27017/satbank';
@@ -66,12 +69,24 @@ mongo.connect(mongo_url, function(err, db) {
 var app = express();
 var port = process.env.PORT || 6969;
 var router = express.Router();
-var upload = multer({ dest: __dirname + '/uploads/' });
+
+//Multer storage
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+});
+var upload = multer({ storage: storage });
 
 app.set('appData', tags);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(require('./routes/index'));
 
@@ -129,8 +144,34 @@ router.route('/question/:qid')
                 }
             };
             var npath = question.file.path;
-            res.sendFile(npath, options);
+            res.sendFile(__dirname + "/" + npath, options);
         });
+    });
+
+router.route('/generate')
+
+    .get(function(req, res) {
+        var paths = [];
+        var done = false;
+
+        for(var keys in req.query) {
+            MongoAPI.getQuestion(keys, function(question) {
+                var fname = question.file.filename;
+                paths.push(fname);
+
+                if(!done) return;
+                generateDoc.generate(paths, function(npath) {
+                        var options = {
+                        headers: {
+                            'Content-Type': 'application/pdf'
+                        }
+                    };
+                    res.sendFile(npath, options)
+                });
+
+            });
+        }
+        done = true;
     });
 
 app.use('/api', router);

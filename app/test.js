@@ -1,4 +1,4 @@
-var generateDoc = require('./generateDoc');
+var generateDoc = require('./uploads/generateDoc');
 
 var paths = ["a.png", "b.png", "c.png"];
 

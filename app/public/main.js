@@ -48,7 +48,13 @@ $(function() {
         ids.splice(index, 1);
       }
     });
-    console.log(ids);
+
+    var pdfurl = 'http://localhost:6969/api/generate?';
+    for(var i = 0; i < ids.length; ++i) {
+      pdfurl += ids[i] + "&";
+    }
+    console.log(pdfurl);
+    window.open(pdfurl)
   });
 
 });
