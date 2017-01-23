@@ -14,8 +14,11 @@ module.exports = {
       //Create random filename
       var origname = raw.toString('hex') + Date.now()
       var filename = __dirname + "/uploads/" + origname + '.tex';
+      var textFileName = __dirname + "/uploads/" + origname + '.txt';
 
       fs.writeFileSync(filename, docStart);
+      fs.writeF
+
       // adds all images in pathArray to latex file
       for(img in pathArray) {
         var strToAdd = `\t\\addimage{${pathArray[img]}} \n`;
