@@ -46,7 +46,7 @@ mongo.connect(mongo_url, function(err, db) {
 
         questions.find({
             $or: searchObj
-        }).project(        
+        }).project(
         {
             _id: 1
         }).toArray(function(err, documents) {
@@ -144,7 +144,7 @@ router.route('/question/:qid')
                 }
             };
             var npath = question.file.path;
-            res.sendFile(__dirname + "/" + npath, options);
+            res.sendFile(/*__dirname + */"/" + npath, options); // Note: commented this line
         });
     });
 

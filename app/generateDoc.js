@@ -24,7 +24,13 @@ module.exports = {
 
       // adds footer to file
       addToFile(docEnd, filename);
+      /* console.log("pdflatex " + filename, {cwd: __dirname + "/uploads"}, function(error, stdout, stderr) {
+        callback(__dirname + "/uploads/" + origname + ".pdf");
+      } );*/
       exec("pdflatex " + filename, {cwd: __dirname + "/uploads"}, function(error, stdout, stderr) {
+        if(error) {
+          console.log("ERROR MAKING THE PDF!");
+        }
         callback(__dirname + "/uploads/" + origname + ".pdf");
       });
     });
