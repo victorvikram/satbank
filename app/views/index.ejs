@@ -8,12 +8,12 @@
   <body>
       <p>Input topics</p>
       <% tagsList.forEach(function(item) { %>
-        <input type="checkbox" class="input" name=topic id=<%= item.name %> /><%= item.name %><br />
+        <input type="checkbox" class="input" name=topic id=<%= item.name.replace(/\s/g, '') %> /><%= item.name %><br />
           <%item.subTags.forEach(function(sub) { %>
-            &emsp; <input type="checkbox" class="input" name="topic" id=<%= sub %> value=<%= sub %>><%= sub %><br />
+            &emsp; <input type="checkbox" class="input" name="topic" id=<%= sub.replace(/\s/g, '') %> value=<%= sub %>><%= sub %><br />
           <% }); %>
         <% }); %>
-        <p><input id="submitbutton" type="button" value="Submit"></p>
+        <p><input id="refreshbutton" type="button" value="Refresh"></p>
         <ul id="questions"></ul>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="main.js"></script>
