@@ -13,16 +13,18 @@ module.exports = {
     crypto.pseudoRandomBytes(16, function (err, raw) {
       //Create random filename
       var origname = raw.toString('hex') + Date.now()
-      var filename = __dirname + "/uploads/" + origname + '.tex';
-      var textFileName = __dirname + "/uploads/" + origname + '.txt';
+      var filename = __dirname + "/pdf/" + origname + '.tex';
+      var textFileName = __dirname + "/pdf/" + origname + '.txt';
 
       fs.writeFileSync(filename, docStart);
-      fs.writeF
+      fs.writeFileSync(textFileName, "");
 
       // adds all images in pathArray to latex file
       for(img in pathArray) {
-        var strToAdd = `\t\\addimage{${pathArray[img]}} \n`;
+        var modifiedPath = '../uploads' + pathArray[img];
+        var strToAdd = `\t\\addimage{${modifiedPath}} \n`;
         addToFile(strToAdd, filename);
+        addToFile(modifiedPath + ", ", textFileName);
       }
 
       // adds footer to file
@@ -30,11 +32,11 @@ module.exports = {
       /* console.log("pdflatex " + filename, {cwd: __dirname + "/uploads"}, function(error, stdout, stderr) {
         callback(__dirname + "/uploads/" + origname + ".pdf");
       } );*/
-      exec("pdflatex " + filename, {cwd: __dirname + "/uploads"}, function(error, stdout, stderr) {
+      exec("pdflatex " + filename, {cwd: __dirname + "/pdf"}, function(error, stdout, stderr) {
         if(error) {
           console.log("ERROR MAKING THE PDF!");
         }
-        callback(__dirname + "/uploads/" + origname + ".pdf");
+        callback(__dirname + "/pdf/" + origname + ".pdf");
       });
     });
 

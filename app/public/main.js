@@ -61,11 +61,12 @@ $(function() {
 
 function refreshDisplay(selected) {
   var urlTail = ''
+  console.log(selected);
   $.each(selected, function(i, t) {
     urlTail += t;
     urlTail += '&';
   });
-  urlTail = urlTail.slice(0, -1);
+  urlTail = urlTail.slice(0, -1).toLowerCase();
   $.ajax({
     type: 'GET',
     url: 'http://localhost:6969/api/questions?' + urlTail,
