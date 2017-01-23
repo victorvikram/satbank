@@ -10,14 +10,15 @@ function getCheckedBoxesOfClass(clss) {
 }
 
 function addHTMLElements(q, im) {
+  var imageLocation = document.getElementById("questions");
   var img=document.createElement('img');
-  img.src = im;
+  img.src = "http://localhost:6969/api/question/" + q._id;
   img.id = q._id;
   var li = document.createElement('li');
   var checkbox = document.createElement('input');
   checkbox.type = "checkbox";
   checkbox.name = "name";
-  checkbox.class = "question"
+  checkbox.className = "question"
   checkbox.value = "value";
   checkbox.id = q._id;
   var tn = document.createTextNode(q._id);
@@ -33,15 +34,15 @@ $(function() {
   refresh.addEventListener("click", function(){
     // get all the checked boxes
     var selected = getCheckedBoxesOfClass("tag");
-    console.log(selected);
     refreshDisplay(selected);
   });
-  
+
   generate.addEventListener("click", function() {
     var idBox = document.getElementById("idBox");
     var str = idBox.value;
-    var selected = getCheckedBoxesOfClass("question");
-    var ids = selected.concat(str.split(/,| /));
+    var ids = getCheckedBoxesOfClass("question");
+    console.log("ids: " + ids);
+    ids = ids.concat(str.split(/,| /));
     $.each(ids, function(index, id) {
       if(id === "") {
         ids.splice(index, 1);
@@ -64,15 +65,14 @@ function refreshDisplay(selected) {
     url: 'http://localhost:6969/api/questions?' + urlTail,
     success: function(response) {
       console.log(response.data);
-      var imageLocation = document.getElementById("questions");
       $.each(response.data, function(i, q) {
-        $.ajax({
+        /*$.ajax({
           type: 'GET',
           url: 'http://localhost:6969/api/question/' + q._id,
-          success: function(im) {
-            addHTMLElements(q, im);
-          }
-        });
+          success: function(im) { */
+            addHTMLElements(q);
+          //}
+      //  });
       });
     }
   });
