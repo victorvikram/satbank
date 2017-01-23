@@ -4,15 +4,15 @@
     "subTags": ["The Real Number System", "Quantities", "The Complex Number System", "Vector and Matrix Quantities"]
   }, {
     "name" : "Algebra",
-    "subTags": ["Seeing Structure in Expressions", "Arithmetic with Polynomials & Rational Expressions", "Creating Equations", "Reasoning with Equations &  Inequalities"]
+    "subTags": ["Seeing Structure in Expressions", "Arithmetic with Polynomials and Rational Expressions", "Creating Equations", "Reasoning with Equations and  Inequalities"]
   }, {
     "name" : "Functions",
-    "subTags" : ["Interpreting Functions", "Building Functions", "Linear, Quadratic, & Exponential Models", "Trigonometric Functions"]
+    "subTags" : ["Interpreting Functions", "Building Functions", "Linear, Quadratic, and Exponential Models", "Trigonometric Functions"]
   }, {
     "name" : "Geometry",
-    "subTags" : ["Congruence", "Similarity, Right Triangles, & Trigonometry", "Circles", "Expressing Geometric Properties with Equations", "Geometric Measurement and Dimension", "Modeling with Geometry"]
+    "subTags" : ["Congruence", "Similarity, Right Triangles, and Trigonometry", "Circles", "Expressing Geometric Properties with Equations", "Geometric Measurement and Dimension", "Modeling with Geometry"]
   }, {
-    "name" : "Statistics & Probability",
-    "subTags" : ["Interpreting Categorical & Quantitative Data", "Making Inferences & Justifying Conclusions", "Conditional Probability & the Rules of Probability", "Using Probability to Make Decisions"]
+    "name" : "Statistics and Probability",
+    "subTags" : ["Interpreting Categorical and Quantitative Data", "Making Inferences and Justifying Conclusions", "Conditional Probability and the Rules of Probability", "Using Probability to Make Decisions"]
   }]
 }

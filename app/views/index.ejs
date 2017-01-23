@@ -8,14 +8,14 @@
   <body>
       <p>Input topics to browse questions: </p>
       <% tagsList.forEach(function(item) { %>
-        <input type="checkbox" class="input" name=topic id=<%= item.name.replace(/\s/g, '') %> /><%= item.name %><br />
+        <input type="checkbox" class="tag" name=topic id=<%= item.name.replace(/\s/g, '') %> /><%= item.name %><br />
           <%item.subTags.forEach(function(sub) { %>
-            &emsp; <input type="checkbox" class="input" name="topic" id=<%= sub.replace(/\s/g, '') %> value=<%= sub %>><%= sub %><br />
+            &emsp; <input type="checkbox" class="tag" name="topic" id=<%= sub.replace(/\s/g, '') %> value=<%= sub %>><%= sub %><br />
           <% }); %>
         <% }); %>
       <p><input id="refreshbutton" type="button" value="Refresh"></p>
       <ul id="questions"></ul>
-      <p>Input question IDs to generate pdf: </p>
+      <p>Add additional questions by ID (separated by spaces or commas): </p>
       <input type="text" id="idBox" style="width: 500px;"/>
       <input type="button" id="generateFromField"  value="Generate"/>
 
