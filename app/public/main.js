@@ -1,8 +1,6 @@
 $(function() {
-
-  var checkboxes = document.getElementsByClassName("input");
-
   var refresh =  document.getElementById("refreshbutton");
+  var generate = document.getElementById("generateFromField")
   refresh.addEventListener("click", function(){
     // get all the checked boxes
     var checkButtons = document.getElementsByClassName("input");
@@ -16,8 +14,17 @@ $(function() {
     console.log(selected);
     refreshDisplay(selected);
   });
-
-  console.log("running javascript");
+  generate.addEventListener("click", function() {
+    var idBox = document.getElementById("idBox");
+    var str = idBox.value
+    var ids = str.split(/,| /);
+    $.each(ids, function(index, id) {
+      if(id === "") {
+        ids.splice(index, 1);
+      }
+    });
+    console.log(ids);
+  });
 
 });
 

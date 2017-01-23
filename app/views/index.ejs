@@ -6,15 +6,19 @@
   <link rel="stylesheet" href="stylesheet.css">
   </head>
   <body>
-      <p>Input topics</p>
+      <p>Input topics to browse questions: </p>
       <% tagsList.forEach(function(item) { %>
         <input type="checkbox" class="input" name=topic id=<%= item.name.replace(/\s/g, '') %> /><%= item.name %><br />
           <%item.subTags.forEach(function(sub) { %>
             &emsp; <input type="checkbox" class="input" name="topic" id=<%= sub.replace(/\s/g, '') %> value=<%= sub %>><%= sub %><br />
           <% }); %>
         <% }); %>
-        <p><input id="refreshbutton" type="button" value="Refresh"></p>
-        <ul id="questions"></ul>
+      <p><input id="refreshbutton" type="button" value="Refresh"></p>
+      <ul id="questions"></ul>
+      <p>Input question IDs to generate pdf: </p>
+      <input type="text" id="idBox" style="width: 500px;"/>
+      <input type="button" id="generateFromField"  value="Generate"/>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="main.js"></script>
   </body>
