@@ -144,7 +144,7 @@ router.route('/question/:qid')
                 }
             };
             var npath = question.file.path;
-            res.sendFile(/*__dirname + */"/" + npath, options); // Note: commented this line
+            res.sendFile(__dirname + "/" + npath, options); // Note: commented this line
         });
     });
 
