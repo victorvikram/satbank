@@ -66,13 +66,7 @@ function refreshDisplay(selected) {
     success: function(response) {
       console.log(response.data);
       $.each(response.data, function(i, q) {
-        /*$.ajax({
-          type: 'GET',
-          url: 'http://localhost:6969/api/question/' + q._id,
-          success: function(im) { */
             addHTMLElements(q);
-          //}
-      //  });
       });
     }
   });
