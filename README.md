@@ -29,4 +29,5 @@ For this, we recommend using Postman to send POST requests to the API. You can a
   7. Change the type for the value of `qdata` to a file and upload the file in image format.
   8. Type in a value for the tag corresponding to one of the tags in tags.json (the ones displayed in the checkboxes on the site). However, modify it slightly by 1. eliminating all spaces, 2. eliminating all punctuation, and 3. making it all lowercase.
   ![](support/postman.png)
-  9. That question has been added and can now by searching with the correct tag.
+  9. Click send.
+  10. If you get a success reply, that question has been added and can now by searching with the correct tag.
