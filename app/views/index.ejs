@@ -10,13 +10,14 @@
       <% tagsList.forEach(function(item) { %>
         <input type="checkbox" class="tag" name=topic id=<%= item.name.replace(/\s|,/g, '') %> /><%= item.name %><br />
           <%item.subTags.forEach(function(sub) { %>
-            &emsp; <input type="checkbox" class="tag" name="topic" id=<%= sub.replace(/\s|,/g, '') %> value=<%= sub %>><%= sub %><br />
+            &emsp; <input type="checkbox" class="tag" name=topic id=<%= sub.replace(/\s|,/g, '') %> value=<%= sub %>><%= sub %><br />
           <% }); %>
         <% }); %>
       <p><input id="refreshbutton" type="button" value="Refresh"></p>
       <ul id="questions"></ul>
       <p>Add additional questions by ID (separated by spaces or commas): </p>
-      <input type="text" id="idBox" style="width: 500px;"/>
+      <input type="text" id="idBox" style="width: 500px;"/><br />
+      <input type="checkbox" class="settings" name=topic id="genTxt" />Show question ids at end of document<br />
       <input type="button" id="generateFromField"  value="Generate"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

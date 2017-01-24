@@ -153,14 +153,19 @@ router.route('/generate')
     .get(function(req, res) {
         var paths = [];
         var done = false;
-
+        var includeIds = req.query.ids;
+        var ids = [];
         for(var keys in req.query) {
+            if(keys == "ids") { continue; };
+            if(includeIds == "true") {
+              ids.push(keys);
+            }
             MongoAPI.getQuestion(keys, function(question) {
                 var fname = question.file.filename;
                 paths.push(fname);
 
                 if(!done) return;
-                generateDoc.generate(paths, function(npath) {
+                generateDoc.generate(paths, ids, function(npath) {
                         var options = {
                         headers: {
                             'Content-Type': 'application/pdf'

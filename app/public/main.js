@@ -41,7 +41,6 @@ $(function() {
     var idBox = document.getElementById("idBox");
     var str = idBox.value;
     var ids = getCheckedBoxesOfClass("question");
-    console.log("ids: " + ids);
     ids = ids.concat(str.split(/,| /));
     $.each(ids, function(index, id) {
       if(id === "") {
@@ -53,7 +52,12 @@ $(function() {
     for(var i = 0; i < ids.length; ++i) {
       pdfurl += ids[i] + "&";
     }
-    console.log(pdfurl);
+    pdfurl += "ids=";
+    if(document.getElementById("genTxt").checked) {
+      pdfurl += "true";
+    } else {
+      pdfurl += "false";
+    }
     window.open(pdfurl)
   });
 
@@ -61,7 +65,6 @@ $(function() {
 
 function refreshDisplay(selected) {
   var urlTail = ''
-  console.log(selected);
   $.each(selected, function(i, t) {
     urlTail += t;
     urlTail += '&';
@@ -71,7 +74,6 @@ function refreshDisplay(selected) {
     type: 'GET',
     url: 'http://localhost:6969/api/questions?' + urlTail,
     success: function(response) {
-      console.log(response.data);
       $.each(response.data, function(i, q) {
             addHTMLElements(q);
       });
