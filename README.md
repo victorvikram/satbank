@@ -22,7 +22,7 @@ Go through these steps every time you run the app:
 For this, we recommend using Postman to send POST requests to the API. You can also use it to send GET requests. Follow these steps to add questions using postman:
   1. Install [Postman](https://www.getpostman.com/)
   2. Open Postman.
-  3. Run the app.
+  3. Run the app using above instructions.
   4. Change the type of request to POST and use this http://localhost:6969/api/question as the request url.
   5. Click on the body tab underneath the url field.
   6. For the first key type in `qdata` and for the second type in `tag`.
